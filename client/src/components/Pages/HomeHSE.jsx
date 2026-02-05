@@ -7,7 +7,6 @@ import craneHook from '../../assets/crane-hook.png';
 
 const HomeHSE = () => {
 
-  // ✅ RULER PATTERN
   const rulerStyle = {
     backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23cbd5e1' stroke-width='1'%3E%3Cpath d='M0 40V20'/%3E%3Cpath d='M10 40V30'/%3E%3Cpath d='M20 40V25'/%3E%3Cpath d='M30 40V30'/%3E%3C/g%3E%3C/svg%3E")`,
     backgroundRepeat: 'repeat-x',
@@ -17,9 +16,9 @@ const HomeHSE = () => {
   };
 
   return (
-    <section className="py-24 bg-[#f3f4f6] relative overflow-hidden">
+    // ✅ FIX: Increased 'pt-12' to 'pt-32' to push text down away from ruler
+    <section className="pt-32 pb-24 bg-[#f3f4f6] relative overflow-hidden">
 
-      {/* ✅ ANIMATION STYLES */}
       <style>{`
         @keyframes moveRuler {
           0% { background-position-x: 0px; }
@@ -37,26 +36,31 @@ const HomeHSE = () => {
         }
       `}</style>
 
-      {/* ✅ RULER STRIP (Moved to Top/Header) */}
-      {/* Changed 'bottom-0' to 'top-10' to be in the header area */}
+      {/* RULER STRIP (Kept at -top-5 to stay at the edge) */}
       <div className="absolute -top-5 left-0 w-full ruler-anim z-0 opacity-50" style={rulerStyle}></div>
 
       {/* --- DECORATION: Hanging Crane Hook --- */}
-      <div className="absolute top-0 right-4 md:right-10 w-16 md:w-24 z-0 animate-bounce-slow pointer-events-none opacity-90">
+      <div className="absolute -top-24 right-4 md:right-10 w-16 md:w-24 z-10 animate-bounce-slow pointer-events-none opacity-90">
+
+         {/* Wire Extension */}
+         <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-[70%] h-[1000px] flex justify-between px-1 -mb-1 z-0">
+             <div className="w-[1.5px] bg-[#4a4a4a] h-full opacity-90"></div>
+             <div className="w-[1.5px] bg-[#4a4a4a] h-full opacity-90"></div>
+         </div>
+
          <img
            src={craneHook}
            alt="Crane Hook"
-           className="w-full drop-shadow-lg"
+           className="w-full drop-shadow-lg relative z-10"
          />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-20">
         <div className="flex flex-col lg:flex-row items-center gap-16">
 
           {/* --- LEFT SIDE: ORANGE CARD --- */}
           <div className="w-full lg:w-1/2 relative min-h-[450px] flex items-center">
 
-            {/* Wireframe Background */}
             <div className="absolute bottom-0 left-0 w-full h-full z-0 opacity-20 pointer-events-none">
               <img
                 src="https://img.freepik.com/free-vector/white-wireframe-structure_1017-30691.jpg"
@@ -65,7 +69,6 @@ const HomeHSE = () => {
               />
             </div>
 
-            {/* Orange Card */}
             <div className="relative z-10 bg-orange-600 p-10 md:p-14 w-full md:max-w-xl shadow-2xl rounded-sm">
               <div className="flex items-center gap-3 mb-6">
                 <FaShieldAlt className="text-3xl text-orange-200" />
@@ -90,7 +93,6 @@ const HomeHSE = () => {
           {/* --- RIGHT SIDE: CONTENT --- */}
           <div className="w-full lg:w-1/2 relative z-10 pl-0 lg:pl-10">
 
-            {/* Header */}
             <div className="mb-6">
                <div className="flex items-center gap-2 mb-2">
                  <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-orange-600"></div>
@@ -103,7 +105,6 @@ const HomeHSE = () => {
                </h2>
             </div>
 
-            {/* Description */}
             <div className="mb-8 relative">
               <p className="text-slate-500 leading-relaxed text-lg mb-8 font-medium">
                 We adhere to strict <span className="text-[#00224D] font-bold">QCS (Qatar Construction Standards)</span> and HSE regulations to ensure a zero-accident environment on all our sites.
@@ -111,7 +112,6 @@ const HomeHSE = () => {
 
               <div className="w-full h-px bg-slate-300 my-8"></div>
 
-              {/* Checkmarks */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 flex-shrink-0">

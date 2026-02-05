@@ -82,16 +82,16 @@ const HomeProjects = () => {
         {/* --- CAROUSEL AREA --- */}
         <div className="relative h-[450px] w-full max-w-7xl mx-auto">
 
-          {/* ✅ FIX: Cleaner, properly centered White buttons with Orange icons */}
+          {/* ✅ FIXED: Buttons are now Solid Orange with White Arrows */}
           <button
             onClick={prevSlide}
-            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white rounded-full shadow-md items-center justify-center text-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-300"
+            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-orange-600 rounded-full shadow-lg items-center justify-center text-white hover:bg-[#00224D] transition-all duration-300"
           >
             <FaChevronLeft className="mr-0.5" />
           </button>
           <button
             onClick={nextSlide}
-            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white rounded-full shadow-md items-center justify-center text-orange-600 hover:bg-orange-600 hover:text-white transition-all duration-300"
+            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-orange-600 rounded-full shadow-lg items-center justify-center text-white hover:bg-[#00224D] transition-all duration-300"
           >
             <FaChevronRight className="ml-0.5" />
           </button>
