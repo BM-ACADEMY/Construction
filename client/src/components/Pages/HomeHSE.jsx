@@ -16,7 +16,6 @@ const HomeHSE = () => {
   };
 
   return (
-    // ✅ FIX: Increased 'pt-12' to 'pt-32' to push text down away from ruler
     <section className="pt-32 pb-24 bg-[#f3f4f6] relative overflow-hidden">
 
       <style>{`
@@ -36,31 +35,29 @@ const HomeHSE = () => {
         }
       `}</style>
 
-      {/* RULER STRIP (Kept at -top-5 to stay at the edge) */}
+      {/* RULER */}
       <div className="absolute -top-5 left-0 w-full ruler-anim z-0 opacity-50" style={rulerStyle}></div>
 
-      {/* --- DECORATION: Hanging Crane Hook --- */}
+      {/* HANGING CRANE HOOK */}
       <div className="absolute -top-24 right-4 md:right-10 w-16 md:w-24 z-10 animate-bounce-slow pointer-events-none opacity-90">
 
-         {/* Wire Extension */}
-         <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-[70%] h-[1000px] flex justify-between px-1 -mb-1 z-0">
-             <div className="w-[1.5px] bg-[#4a4a4a] h-full opacity-90"></div>
-             <div className="w-[1.5px] bg-[#4a4a4a] h-full opacity-90"></div>
-         </div>
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-[70%] h-[1000px] flex justify-between px-1 -mb-1 z-0">
+          <div className="w-[1.5px] bg-[#4a4a4a] h-full opacity-90"></div>
+          <div className="w-[1.5px] bg-[#4a4a4a] h-full opacity-90"></div>
+        </div>
 
-         <img
-           src={craneHook}
-           alt="Crane Hook"
-           className="w-full drop-shadow-lg relative z-10"
-         />
+        <img
+          src={craneHook}
+          alt="Crane Hook"
+          className="w-full drop-shadow-lg relative z-10"
+        />
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
         <div className="flex flex-col lg:flex-row items-center gap-16">
 
-          {/* --- LEFT SIDE: ORANGE CARD --- */}
+          {/* LEFT CARD */}
           <div className="w-full lg:w-1/2 relative min-h-[450px] flex items-center">
-
             <div className="absolute bottom-0 left-0 w-full h-full z-0 opacity-20 pointer-events-none">
               <img
                 src="https://img.freepik.com/free-vector/white-wireframe-structure_1017-30691.jpg"
@@ -73,12 +70,12 @@ const HomeHSE = () => {
               <div className="flex items-center gap-3 mb-6">
                 <FaShieldAlt className="text-3xl text-orange-200" />
                 <span className="text-white font-bold uppercase tracking-widest text-sm">
-                  Safety First
+                  Quality & HSE
                 </span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-8 leading-tight">
-                Committed to Highest Quality & Safety Standards
+                Built on Safety, Driven by Quality
               </h2>
 
               <Link
@@ -90,40 +87,45 @@ const HomeHSE = () => {
             </div>
           </div>
 
-          {/* --- RIGHT SIDE: CONTENT --- */}
+          {/* RIGHT CONTENT */}
           <div className="w-full lg:w-1/2 relative z-10 pl-0 lg:pl-10">
 
             <div className="mb-6">
-               <div className="flex items-center gap-2 mb-2">
-                 <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-orange-600"></div>
-                 <span className="text-slate-500 font-bold uppercase tracking-widest text-xs">
-                   HSE COMPLIANCE
-                 </span>
-               </div>
-               <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#00224D]">
-                 Zero-Accident Vision
-               </h2>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-orange-600"></div>
+                <span className="text-slate-500 font-bold uppercase tracking-widest text-xs">
+                  HSE COMMITMENT
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#00224D]">
+                Zero-Accident Mindset
+              </h2>
             </div>
 
-            <div className="mb-8 relative">
+            <div className="mb-8">
               <p className="text-slate-500 leading-relaxed text-lg mb-8 font-medium">
-                We adhere to strict <span className="text-[#00224D] font-bold">QCS (Qatar Construction Standards)</span> and HSE regulations to ensure a zero-accident environment on all our sites.
+                We maintain high standards of quality, health, safety, and environmental responsibility by strictly following approved specifications, local regulations, and safe working practices across all operations.
               </p>
 
               <div className="w-full h-px bg-slate-300 my-8"></div>
 
+              {/* Preview bullets only */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
                     <FaCheckCircle />
                   </div>
-                  <span className="text-slate-700 font-bold text-sm">Risk Assessments</span>
+                  <span className="text-slate-700 font-bold text-sm">
+                    Approved Materials & Drawings
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 flex-shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
                     <FaShieldAlt />
                   </div>
-                  <span className="text-slate-700 font-bold text-sm">PPE Protocols</span>
+                  <span className="text-slate-700 font-bold text-sm">
+                    Safe & Compliant Work Practices
+                  </span>
                 </div>
               </div>
 
