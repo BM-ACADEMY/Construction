@@ -1,0 +1,140 @@
+import React from 'react';
+import { FaShieldAlt, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+// 👇 IMPORT YOUR HOOK IMAGE
+import craneHook from '../../assets/crane-hook.png';
+
+const HomeHSE = () => {
+
+  // ✅ RULER PATTERN
+  const rulerStyle = {
+    backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23cbd5e1' stroke-width='1'%3E%3Cpath d='M0 40V20'/%3E%3Cpath d='M10 40V30'/%3E%3Cpath d='M20 40V25'/%3E%3Cpath d='M30 40V30'/%3E%3C/g%3E%3C/svg%3E")`,
+    backgroundRepeat: 'repeat-x',
+    backgroundPosition: 'bottom',
+    height: '40px',
+    width: '100%',
+  };
+
+  return (
+    <section className="py-24 bg-[#f3f4f6] relative overflow-hidden">
+
+      {/* ✅ ANIMATION STYLES */}
+      <style>{`
+        @keyframes moveRuler {
+          0% { background-position-x: 0px; }
+          100% { background-position-x: 40px; }
+        }
+        .ruler-anim {
+          animation: moveRuler 1s linear infinite;
+        }
+        @keyframes bounceSlow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(15px); }
+        }
+        .animate-bounce-slow {
+          animation: bounceSlow 4s infinite ease-in-out;
+        }
+      `}</style>
+
+      {/* ✅ RULER STRIP (Moved to Top/Header) */}
+      {/* Changed 'bottom-0' to 'top-10' to be in the header area */}
+      <div className="absolute -top-5 left-0 w-full ruler-anim z-0 opacity-50" style={rulerStyle}></div>
+
+      {/* --- DECORATION: Hanging Crane Hook --- */}
+      <div className="absolute top-0 right-4 md:right-10 w-16 md:w-24 z-0 animate-bounce-slow pointer-events-none opacity-90">
+         <img
+           src={craneHook}
+           alt="Crane Hook"
+           className="w-full drop-shadow-lg"
+         />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-16">
+
+          {/* --- LEFT SIDE: ORANGE CARD --- */}
+          <div className="w-full lg:w-1/2 relative min-h-[450px] flex items-center">
+
+            {/* Wireframe Background */}
+            <div className="absolute bottom-0 left-0 w-full h-full z-0 opacity-20 pointer-events-none">
+              <img
+                src="https://img.freepik.com/free-vector/white-wireframe-structure_1017-30691.jpg"
+                alt="Construction Wireframe"
+                className="w-full h-full object-contain object-bottom grayscale"
+              />
+            </div>
+
+            {/* Orange Card */}
+            <div className="relative z-10 bg-orange-600 p-10 md:p-14 w-full md:max-w-xl shadow-2xl rounded-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <FaShieldAlt className="text-3xl text-orange-200" />
+                <span className="text-white font-bold uppercase tracking-widest text-sm">
+                  Safety First
+                </span>
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-8 leading-tight">
+                Committed to Highest Quality & Safety Standards
+              </h2>
+
+              <Link
+                to="/hse"
+                className="inline-flex items-center bg-white text-[#00224D] font-bold text-xs uppercase px-8 py-4 hover:bg-[#00224D] hover:text-white transition-colors tracking-wider shadow-lg"
+              >
+                Our Quality Policy <FaArrowRight className="ml-2" />
+              </Link>
+            </div>
+          </div>
+
+          {/* --- RIGHT SIDE: CONTENT --- */}
+          <div className="w-full lg:w-1/2 relative z-10 pl-0 lg:pl-10">
+
+            {/* Header */}
+            <div className="mb-6">
+               <div className="flex items-center gap-2 mb-2">
+                 <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-orange-600"></div>
+                 <span className="text-slate-500 font-bold uppercase tracking-widest text-xs">
+                   HSE COMPLIANCE
+                 </span>
+               </div>
+               <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#00224D]">
+                 Zero-Accident Vision
+               </h2>
+            </div>
+
+            {/* Description */}
+            <div className="mb-8 relative">
+              <p className="text-slate-500 leading-relaxed text-lg mb-8 font-medium">
+                We adhere to strict <span className="text-[#00224D] font-bold">QCS (Qatar Construction Standards)</span> and HSE regulations to ensure a zero-accident environment on all our sites.
+              </p>
+
+              <div className="w-full h-px bg-slate-300 my-8"></div>
+
+              {/* Checkmarks */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 flex-shrink-0">
+                    <FaCheckCircle />
+                  </div>
+                  <span className="text-slate-700 font-bold text-sm">Risk Assessments</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 flex-shrink-0">
+                    <FaShieldAlt />
+                  </div>
+                  <span className="text-slate-700 font-bold text-sm">PPE Protocols</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HomeHSE;

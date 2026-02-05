@@ -1,0 +1,18 @@
+/* 1. Import Fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2. Global Font Settings */
+body {
+  font-family: 'Roboto', sans-serif; /* Sets default text font */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 3. Custom Class for Headings */
+/* Since we aren't using tailwind.config.js, we define this class manually */
+.font-heading {
+  font-family: 'Montserrat', sans-serif;
+}
