@@ -3,7 +3,7 @@ import { FaGlobe } from "react-icons/fa";
 
 const GoogleTranslate = () => {
   useEffect(() => {
-    // Check if script is already there
+    // 1. Initialize Google Translate
     if (!document.querySelector("#google-translate-script")) {
       window.googleTranslateElementInit = () => {
         new window.google.translate.TranslateElement(
@@ -16,7 +16,6 @@ const GoogleTranslate = () => {
           "google_translate_element"
         );
       };
-
       const script = document.createElement("script");
       script.id = "google-translate-script";
       script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
@@ -28,27 +27,44 @@ const GoogleTranslate = () => {
   return (
     <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-slate-100 hover:bg-orange-100 transition-colors cursor-pointer text-[#00224D] hover:text-orange-600 group">
 
-      {/* 1. The Globe Icon (Visual Only) */}
+      {/* Visual Icon */}
       <FaGlobe className="text-xl z-0 pointer-events-none" />
 
-      {/* 2. The Invisible Google Widget (Click Trigger) */}
-      {/* ✅ FIX: Removed 'overflow-hidden' and ensured full coverage */}
+      {/* Invisible Clickable Widget */}
       <div
         id="google_translate_element"
         className="absolute inset-0 w-full h-full z-10 opacity-0 overflow-visible"
       ></div>
 
-      {/* 3. CSS Fixes */}
+      {/* ✅ CSS FIXES (Hides the bar WITHOUT breaking functionality) */}
       <style>{`
-        /* Hide the top 'Google Translate' bar */
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0px !important; }
+        /* 1. HIDE the Top Bar (But keep it in DOM so translate works) */
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
 
-        /* Hide Google Logo in the dropdown */
-        .goog-logo-link { display: none !important; }
-        .goog-te-gadget { color: transparent !important; }
+        /* 2. FORCE Body to Top */
+        body {
+            top: 0px !important;
+        }
 
-        /* ✅ FORCE CLICK AREA: Make the inner Google button fill the whole circle */
+        /* 3. HIDE "Original Text" Popup */
+        .goog-te-balloon-frame {
+            display: none !important;
+        }
+
+        /* 4. HIDE Hover Tooltips */
+        .goog-text-highlight {
+            background: none !important;
+            box-shadow: none !important;
+        }
+
+        #goog-gt-tt {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        /* 5. MAKE WIDGET CLICKABLE */
         .goog-te-gadget-simple {
             width: 100% !important;
             height: 100% !important;
@@ -57,12 +73,13 @@ const GoogleTranslate = () => {
             left: 0 !important;
             opacity: 0 !important;
             cursor: pointer !important;
-            display: block !important;
         }
 
-        /* Ensure the dropdown menu is visible on top of everything */
+        /* 6. ENSURE DROPDOWN IS VISIBLE & CLICKABLE */
         .goog-te-menu-frame {
-            z-index: 999999 !important;
+            z-index: 99999999 !important;
+            position: fixed !important;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
         }
       `}</style>
     </div>
