@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { FaAward, FaUserClock, FaHandHoldingHeart } from 'react-icons/fa'; // New Icons
 
 // --- VECTOR BACKGROUND COMPONENT ---
 const BlueprintBackground = () => (
@@ -45,7 +46,6 @@ const AboutPage = () => {
       {/* ==========================
           SECTION 1: HERO BANNER
       ========================== */}
-      {/* ✅ UPDATED: Height reduced to h-[250px] (mobile) and h-[350px] (desktop) */}
       <div className="relative w-full h-[250px] md:h-[350px] overflow-hidden flex items-center justify-center">
         <div
           className="absolute inset-0 bg-fixed bg-cover bg-center z-0"
@@ -53,7 +53,6 @@ const AboutPage = () => {
             backgroundImage: "url('https://images.unsplash.com/photo-1541976590-713941681591?q=80&w=2070&auto=format&fit=crop')"
           }}
         >
-          {/* Neutral Black/Gray Overlay */}
           <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
         </div>
 
@@ -66,7 +65,6 @@ const AboutPage = () => {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            {/* Slightly reduced text size to fit new height */}
             <h1 className="text-4xl md:text-6xl font-heading font-bold text-white tracking-tighter mb-3 drop-shadow-2xl">
               About Us
             </h1>
@@ -81,36 +79,77 @@ const AboutPage = () => {
 
 
       {/* ==========================
-          SECTION 2: COMPANY OVERVIEW
+          SECTION 2: COMPANY OVERVIEW (Version 4: Architectural Dark Card)
       ========================== */}
-      <section className="py-20 bg-white relative z-10">
+      <section className="py-24 bg-white relative z-10 overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <h2 className="text-sm font-bold text-orange-600 uppercase tracking-widest mb-4">
-                Who We Are
-              </h2>
-              <h3 className="text-4xl md:text-5xl font-heading font-bold text-[#00224D] mb-10 leading-tight">
-                Company Overview
-              </h3>
+          <div className="relative flex flex-col lg:flex-row items-center justify-end">
 
-              <div className="space-y-8 text-slate-600 leading-relaxed text-lg md:text-xl font-light text-left md:text-center">
-                <p>
-                  <span className="font-bold text-[#00224D]">Multiverse International Trading & Contracting</span> is a Qatar-based company established to deliver reliable trading and contracting solutions with a strong focus on quality, safety, and long-term client relationships.
-                </p>
-                <p>
-                  We are built on the belief that successful projects are not driven only by materials and manpower, but by planning, accountability, and professional execution. Our team brings together technical knowledge, site experience, and an understanding of local regulations to support clients across commercial, industrial, and infrastructure-related works.
-                </p>
-                <p>
-                  As a growing organization, we combine fresh operational energy with industry-proven practices, enabling us to adapt quickly to client requirements while maintaining high standards of workmanship and compliance.
-                </p>
-              </div>
+            {/* --- 1. IMAGE (Background Layer) --- */}
+            {/* Placed on the Right, taking up 60% of width */}
+            <motion.div
+              className="w-full lg:w-[65%] h-[500px] relative z-0 rounded-lg overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+               <img
+                 src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop"
+                 alt="Construction Site"
+                 className="w-full h-full object-cover"
+               />
+               {/* Gradient Overlay to help blend */}
+               <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent lg:hidden"></div>
             </motion.div>
+
+
+            {/* --- 2. TEXT CARD (Overlay Layer) --- */}
+            {/* Floats on the Left, overlapping the image */}
+            <motion.div
+              className="w-full lg:w-[50%] bg-[#00224D] text-white p-10 md:p-14 shadow-2xl relative z-10 mt-[-60px] lg:mt-0 lg:mr-[-100px] lg:absolute lg:left-0 rounded-r-lg"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+               {/* Decorative Orange Line */}
+               <div className="w-16 h-1 bg-orange-600 mb-6"></div>
+
+               <h2 className="text-sm font-bold text-orange-500 uppercase tracking-widest mb-3">
+                 Who We Are
+               </h2>
+               <h3 className="text-3xl md:text-4xl font-heading font-bold mb-6 leading-tight">
+                 Reliable Trading & <br/>Contracting Solutions.
+               </h3>
+
+               <div className="space-y-6 text-gray-300 leading-relaxed text-lg font-light mb-8">
+                 <p>
+                   <span className="font-bold text-white">Multiverse International</span> is built on the belief that successful projects are driven by planning, accountability, and professional execution.
+                 </p>
+                 <p>
+                   Our team combines technical expertise with deep local knowledge to support commercial, industrial, and infrastructure projects across Qatar.
+                 </p>
+               </div>
+
+               {/* Features Row */}
+               <div className="grid grid-cols-3 gap-6 border-t border-white/10 pt-6">
+                  <div className="flex flex-col items-center text-center">
+                     <FaAward className="text-2xl text-orange-500 mb-2" />
+                     <span className="text-xs uppercase tracking-wider font-bold text-gray-400">Certified</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center">
+                     <FaUserClock className="text-2xl text-orange-500 mb-2" />
+                     <span className="text-xs uppercase tracking-wider font-bold text-gray-400">Experienced</span>
+                  </div>
+                  <div className="flex flex-col items-center text-center">
+                     <FaHandHoldingHeart className="text-2xl text-orange-500 mb-2" />
+                     <span className="text-xs uppercase tracking-wider font-bold text-gray-400">Reliable</span>
+                  </div>
+               </div>
+
+            </motion.div>
+
           </div>
         </div>
       </section>
@@ -135,13 +174,10 @@ const AboutPage = () => {
 
             {/* --- ITEM 1: VISION --- */}
             <div className="grid md:grid-cols-2 gap-12 items-start mb-32 relative group">
-              {/* Marker */}
               <div className="hidden md:flex absolute left-1/2 top-2 transform -translate-x-1/2 z-10 items-center justify-center">
                  <div className="absolute w-8 h-8 bg-orange-500/20 rounded-full animate-ping"></div>
                  <div className="w-5 h-5 bg-[#00224D] border-4 border-white shadow-lg rotate-45 z-10 group-hover:bg-orange-600 transition-colors duration-500"></div>
               </div>
-
-              {/* Content */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -161,15 +197,11 @@ const AboutPage = () => {
 
             {/* --- ITEM 2: MISSION --- */}
             <div className="grid md:grid-cols-2 gap-12 items-start relative group">
-              {/* Marker */}
               <div className="hidden md:flex absolute left-1/2 top-2 transform -translate-x-1/2 z-10 items-center justify-center">
                  <div className="absolute w-8 h-8 bg-orange-500/20 rounded-full animate-ping"></div>
                  <div className="w-5 h-5 bg-[#00224D] border-4 border-white shadow-lg rotate-45 z-10 group-hover:bg-orange-600 transition-colors duration-500"></div>
               </div>
-
               <div className="hidden md:block"></div>
-
-              {/* Content */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}

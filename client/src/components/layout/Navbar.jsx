@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 // Import Logo
 import logo from '../../assets/constructionlogo.png';
 
+// ✅ Import Google Translate
+import GoogleTranslate from '../translate/GoogleTranslate';
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,8 +28,6 @@ const Navbar = () => {
   return (
     // ✅ MOVED 'sticky' HERE so the entire bar stays at the top
     <header className="w-full font-sans bg-white shadow-sm sticky top-0 z-50">
-
-      {/* --- TOP BAR REMOVED --- */}
 
       {/* --- MAIN NAVBAR --- */}
       <nav className="bg-white border-b border-gray-100">
@@ -53,17 +54,25 @@ const Navbar = () => {
               </Link>
             ))}
 
+            {/* ✅ GOOGLE TRANSLATE (Globe Icon) */}
+            <div className="ml-4">
+               <GoogleTranslate />
+            </div>
+
             {/* 'Get Quote' Button */}
             <Link
               to="/contact"
-              className={`${brandBlue} text-white px-6 py-3 text-sm font-bold rounded shadow-md hover:bg-orange-600 transition-all transform hover:-translate-y-0.5 ml-4`}
+              className={`${brandBlue} text-white px-6 py-3 text-sm font-bold rounded shadow-md hover:bg-orange-600 transition-all transform hover:-translate-y-0.5`}
             >
               GET QUOTE
             </Link>
           </div>
 
           {/* MOBILE MENU BUTTON */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-4">
+             {/* ✅ Mobile Translate (Visible on mobile header too) */}
+             <GoogleTranslate />
+
             <button onClick={() => setIsOpen(!isOpen)} className={`${textBlue} text-2xl p-2`}>
               {isOpen ? <FaTimes /> : <FaBars />}
             </button>
@@ -90,6 +99,7 @@ const Navbar = () => {
                     {link.title}
                   </Link>
                 ))}
+
                 <Link
                   to="/contact"
                   onClick={() => setIsOpen(false)}
