@@ -7,14 +7,21 @@ import logo from '../../assets/constructionlogo.png';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#00152e] text-slate-300 pt-16 pb-8 border-t border-slate-800 font-sans">
+    // ✅ Responsive Padding: pt-10 on mobile, pt-16 on desktop
+    <footer className="bg-[#00152e] text-slate-300 pt-10 pb-8 md:pt-16 border-t border-slate-800 font-sans">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+
+        {/* ✅ Responsive Grid:
+            - grid-cols-1 (Mobile: Stacked)
+            - md:grid-cols-2 (Tablet: 2x2 grid)
+            - lg:grid-cols-4 (Desktop: 4 columns in a row)
+        */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
 
           {/* Column 1: Brand */}
-          <div>
+          <div className="flex flex-col items-start">
             <Link to="/" className="block mb-6">
-               <img src={logo} alt="Multiverse Intl" className="h-12 w-auto object-contain brightness-0 invert" />
+               <img src={logo} alt="Multiverse Intl" className="h-10 md:h-12 w-auto object-contain brightness-0 invert" />
             </Link>
 
             <p className="text-sm leading-relaxed text-slate-400 mb-6">
@@ -28,7 +35,7 @@ const Footer = () => {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
+            <h4 className="text-white font-bold mb-4 md:mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
             <ul className="space-y-3 text-sm">
               <li><Link to="/" className="hover:text-orange-500 transition-colors">Home</Link></li>
               <li><Link to="/about" className="hover:text-orange-500 transition-colors">About Us</Link></li>
@@ -40,7 +47,7 @@ const Footer = () => {
 
           {/* Column 3: Services */}
           <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Our Services</h4>
+            <h4 className="text-white font-bold mb-4 md:mb-6 uppercase tracking-wider text-sm">Our Services</h4>
             <ul className="space-y-3 text-sm">
               <li><Link to="/services" className="hover:text-orange-500 transition-colors">Trading & Sourcing</Link></li>
               <li><Link to="/services" className="hover:text-orange-500 transition-colors">Civil Contracting</Link></li>
@@ -51,7 +58,7 @@ const Footer = () => {
 
           {/* Column 4: Contact */}
           <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact Us</h4>
+            <h4 className="text-white font-bold mb-4 md:mb-6 uppercase tracking-wider text-sm">Contact Us</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <FaMapMarkerAlt className="text-orange-500 mt-1 flex-shrink-0" />
@@ -70,7 +77,7 @@ const Footer = () => {
 
         </div>
 
-        {/* ✅ COPYRIGHT BAR: Exactly as requested */}
+        {/* ✅ COPYRIGHT BAR */}
         <div className="border-t border-slate-800 pt-8 text-center text-xs text-slate-500">
           <p>
             &copy; {new Date().getFullYear()}{' '}

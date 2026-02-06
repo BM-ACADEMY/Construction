@@ -16,7 +16,7 @@ const HomeHSE = () => {
   };
 
   return (
-    <section className="pt-32 pb-24 bg-[#f3f4f6] relative overflow-hidden">
+    <section className="pt-16 pb-16 md:pt-32 md:pb-24 bg-[#f3f4f6] relative overflow-hidden">
 
       <style>{`
         @keyframes moveRuler {
@@ -39,51 +39,60 @@ const HomeHSE = () => {
       <div className="absolute -top-5 left-0 w-full ruler-anim z-0 opacity-50" style={rulerStyle}></div>
 
       {/* HANGING CRANE HOOK */}
-      <div className="absolute -top-24 right-4 md:right-10 w-16 md:w-24 z-10 animate-bounce-slow pointer-events-none opacity-90">
+      {/* ✅ FIXED: Increased z-index to 30 (front), moved up (-top-20) to clear text */}
+      <div className="absolute -top-20 md:-top-24 right-5 md:right-10 w-14 md:w-24 z-30 animate-bounce-slow pointer-events-none opacity-100">
 
+        {/* Cables */}
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-[70%] h-[1000px] flex justify-between px-1 -mb-1 z-0">
-          <div className="w-[1.5px] bg-[#4a4a4a] h-full opacity-90"></div>
-          <div className="w-[1.5px] bg-[#4a4a4a] h-full opacity-90"></div>
+          <div className="w-[2px] bg-[#4a4a4a] h-full opacity-90"></div>
+          <div className="w-[2px] bg-[#4a4a4a] h-full opacity-90"></div>
         </div>
 
+        {/* Hook Image */}
         <img
           src={craneHook}
           alt="Crane Hook"
-          className="w-full drop-shadow-lg relative z-10"
+          className="w-full drop-shadow-xl relative z-10"
         />
       </div>
 
       <div className="container mx-auto px-6 relative z-20">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
-          {/* LEFT CARD */}
-          <div className="w-full lg:w-1/2 relative min-h-[450px] flex items-center">
-            <div className="absolute bottom-0 left-0 w-full h-full z-0 opacity-20 pointer-events-none">
-              <img
-                src="https://img.freepik.com/free-vector/white-wireframe-structure_1017-30691.jpg"
-                alt="Construction Wireframe"
-                className="w-full h-full object-contain object-bottom grayscale"
-              />
-            </div>
+          {/* LEFT CARD (Orange Box) */}
+          <div className="w-full lg:w-1/2 relative flex items-center justify-center lg:justify-start">
 
-            <div className="relative z-10 bg-orange-600 p-10 md:p-14 w-full md:max-w-xl shadow-2xl rounded-sm">
-              <div className="flex items-center gap-3 mb-6">
-                <FaShieldAlt className="text-3xl text-orange-200" />
-                <span className="text-white font-bold uppercase tracking-widest text-sm">
-                  Quality & HSE
-                </span>
+            <div className="relative z-10 bg-orange-600 w-full md:max-w-xl shadow-2xl rounded-sm overflow-hidden p-8 md:p-14">
+
+              {/* Background Texture */}
+              <div className="absolute inset-0 z-0 opacity-10 mix-blend-multiply pointer-events-none">
+                <img
+                  src="https://img.freepik.com/free-vector/white-wireframe-structure_1017-30691.jpg"
+                  alt="Construction Wireframe"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-8 leading-tight">
-                Built on Safety, Driven by Quality
-              </h2>
+              {/* Card Content */}
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4 md:mb-6">
+                  <FaShieldAlt className="text-2xl md:text-3xl text-orange-200" />
+                  <span className="text-white font-bold uppercase tracking-widest text-xs md:text-sm">
+                    Quality & HSE
+                  </span>
+                </div>
 
-              <Link
-                to="/hse"
-                className="inline-flex items-center bg-white text-[#00224D] font-bold text-xs uppercase px-8 py-4 hover:bg-[#00224D] hover:text-white transition-colors tracking-wider shadow-lg"
-              >
-                Our Quality Policy <FaArrowRight className="ml-2" />
-              </Link>
+                <h2 className="text-2xl md:text-4xl font-heading font-bold text-white mb-6 md:mb-8 leading-tight">
+                  Built on Safety, Driven by Quality
+                </h2>
+
+                <Link
+                  to="/hse"
+                  className="inline-flex items-center bg-white text-[#00224D] font-bold text-xs uppercase px-6 py-3 md:px-8 md:py-4 hover:bg-[#00224D] hover:text-white transition-colors tracking-wider shadow-lg"
+                >
+                  Our Quality Policy <FaArrowRight className="ml-2" />
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -97,34 +106,34 @@ const HomeHSE = () => {
                   HSE COMMITMENT
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#00224D]">
+              <h2 className="text-3xl md:text-5xl font-heading font-bold text-[#00224D]">
                 Zero-Accident Mindset
               </h2>
             </div>
 
             <div className="mb-8">
-              <p className="text-slate-500 leading-relaxed text-lg mb-8 font-medium">
+              <p className="text-slate-500 leading-relaxed text-base md:text-lg mb-8 font-medium">
                 We maintain high standards of quality, health, safety, and environmental responsibility by strictly following approved specifications, local regulations, and safe working practices across all operations.
               </p>
 
-              <div className="w-full h-px bg-slate-300 my-8"></div>
+              <div className="w-full h-px bg-slate-300 my-6 md:my-8"></div>
 
-              {/* Preview bullets only */}
+              {/* Bullets */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex-shrink-0 flex items-center justify-center text-orange-600">
                     <FaCheckCircle />
                   </div>
                   <span className="text-slate-700 font-bold text-sm">
-                    Approved Materials & Drawings
+                    Approved Materials
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                  <div className="w-10 h-10 rounded-full bg-orange-100 flex-shrink-0 flex items-center justify-center text-orange-600">
                     <FaShieldAlt />
                   </div>
                   <span className="text-slate-700 font-bold text-sm">
-                    Safe & Compliant Work Practices
+                    Safe Work Practices
                   </span>
                 </div>
               </div>

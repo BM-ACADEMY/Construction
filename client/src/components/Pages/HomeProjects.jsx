@@ -46,13 +46,16 @@ const HomeProjects = () => {
 
   const getSlideStyles = (index) => {
     if (index === activeIndex) {
-      return "left-1/2 -translate-x-1/2 w-[55%] md:w-[60%] z-20 opacity-100 shadow-2xl";
+      // ✅ Active Slide: 92% width on mobile (single card view), 60% on desktop
+      return "left-1/2 -translate-x-1/2 w-[92%] md:w-[60%] z-20 opacity-100 shadow-2xl";
     }
     else if (index === (activeIndex - 1 + projects.length) % projects.length) {
-      return "left-0 translate-x-0 w-[15%] md:w-[18%] z-10 opacity-100";
+      // ✅ Previous Slide: Hidden on mobile, visible on desktop
+      return "hidden md:block left-0 translate-x-0 w-[18%] z-10 opacity-100";
     }
     else if (index === (activeIndex + 1) % projects.length) {
-      return "right-0 translate-x-0 w-[15%] md:w-[18%] z-10 opacity-100";
+      // ✅ Next Slide: Hidden on mobile, visible on desktop
+      return "hidden md:block right-0 translate-x-0 w-[18%] z-10 opacity-100";
     }
     else {
       return "opacity-0 z-0 pointer-events-none";
@@ -60,40 +63,44 @@ const HomeProjects = () => {
   };
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    // ✅ Reduced padding: py-12 on mobile
+    <section className="py-12 md:py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
 
         {/* --- HEADER --- */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <div className="flex items-center justify-center gap-2 mb-3">
             <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-orange-600"></div>
             <span className="text-slate-500 font-bold uppercase tracking-widest text-xs">
               RECENT WORK
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-[#00224D]">
+          {/* ✅ Responsive Text Sizes */}
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-[#00224D]">
             Check our latest projects
           </h2>
-          <p className="text-slate-400 mt-4 max-w-xl mx-auto text-sm">
+          <p className="text-slate-400 mt-4 max-w-xl mx-auto text-sm md:text-base px-4">
              We are the best construction agency in the world, delivering excellence in every blueprint we execute.
           </p>
         </div>
 
         {/* --- CAROUSEL AREA --- */}
-        <div className="relative h-[450px] w-full max-w-7xl mx-auto">
+        {/* ✅ Adjusted Height: 400px on mobile, 500px on desktop */}
+        <div className="relative h-[400px] md:h-[500px] w-full max-w-7xl mx-auto">
 
-          {/* ✅ FIXED: Buttons are now Solid Orange with White Arrows */}
+          {/* ARROWS - Now Visible on Mobile (Smaller size) */}
           <button
             onClick={prevSlide}
-            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-orange-600 rounded-full shadow-lg items-center justify-center text-white hover:bg-[#00224D] transition-all duration-300"
+            className="absolute left-0 md:left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-orange-600 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-[#00224D] transition-all duration-300"
           >
-            <FaChevronLeft className="mr-0.5" />
+            <FaChevronLeft className="mr-0.5 text-sm md:text-base" />
           </button>
+
           <button
             onClick={nextSlide}
-            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-orange-600 rounded-full shadow-lg items-center justify-center text-white hover:bg-[#00224D] transition-all duration-300"
+            className="absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-orange-600 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-[#00224D] transition-all duration-300"
           >
-            <FaChevronRight className="ml-0.5" />
+            <FaChevronRight className="ml-0.5 text-sm md:text-base" />
           </button>
 
           {/* SLIDES CONTAINER */}
@@ -107,7 +114,7 @@ const HomeProjects = () => {
                   className={`absolute top-0 h-full transition-all duration-500 ease-in-out ${getSlideStyles(index)}`}
                 >
                   {/* Inner Card */}
-                  <div className="relative w-full h-full overflow-hidden bg-slate-900 group rounded-sm">
+                  <div className="relative w-full h-full overflow-hidden bg-slate-900 group rounded-md md:rounded-sm shadow-xl">
 
                     <img
                       src={project.image}
@@ -115,20 +122,22 @@ const HomeProjects = () => {
                       className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-100 group-hover:scale-105' : 'scale-100 brightness-50'}`}
                     />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
 
                     {/* CONTENT */}
-                    <div className={`absolute bottom-0 left-0 p-8 md:p-12 w-full transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                    {/* ✅ Responsive Padding & Text Sizes */}
+                    <div className={`absolute bottom-0 left-0 p-6 md:p-12 w-full transition-all duration-300 ${isActive ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
 
-                      <span className="inline-block px-3 py-1 bg-white/20 text-white text-[10px] font-bold tracking-widest uppercase mb-4 backdrop-blur-md">
+                      <span className="inline-block px-3 py-1 bg-white/20 text-white text-[9px] md:text-[10px] font-bold tracking-widest uppercase mb-2 md:mb-4 backdrop-blur-md rounded">
                         {project.category}
                       </span>
 
-                      <h3 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+                      <h3 className="text-2xl md:text-4xl font-bold text-white mb-2 leading-tight">
                         {project.title}
                       </h3>
 
-                      <p className="text-gray-300 text-sm font-medium">
+                      <p className="text-gray-300 text-xs md:text-sm font-medium mb-12 md:mb-0">
                         {project.date}
                       </p>
                     </div>
@@ -137,9 +146,10 @@ const HomeProjects = () => {
                     {isActive && (
                       <Link
                         to="/projects"
-                        className="absolute bottom-0 right-0 bg-orange-600 text-white font-bold text-xs uppercase px-8 py-5 hover:bg-[#00224D] transition-colors tracking-wider flex items-center gap-2"
+                        // ✅ Responsive Button Size
+                        className="absolute bottom-0 right-0 bg-orange-600 text-white font-bold text-[10px] md:text-xs uppercase px-6 py-3 md:px-8 md:py-5 hover:bg-[#00224D] transition-colors tracking-wider flex items-center gap-2"
                       >
-                        Explore Service <FaArrowRight />
+                        Explore <span className="hidden md:inline">Project</span> <FaArrowRight />
                       </Link>
                     )}
 
@@ -151,13 +161,13 @@ const HomeProjects = () => {
         </div>
 
         {/* --- DOTS --- */}
-        <div className="flex justify-center gap-2 mt-10">
+        <div className="flex justify-center gap-2 mt-8 md:mt-10">
           {projects.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                index === activeIndex ? "bg-orange-600 w-8" : "bg-slate-300 hover:bg-orange-400"
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                index === activeIndex ? "bg-orange-600 w-8" : "bg-slate-300 hover:bg-orange-400 w-2.5"
               }`}
             />
           ))}
