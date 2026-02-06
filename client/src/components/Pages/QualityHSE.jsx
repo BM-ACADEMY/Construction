@@ -1,128 +1,155 @@
 import React, { useEffect } from 'react';
-import { FaShieldAlt, FaHardHat, FaLeaf, FaCheckDouble } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { FaClipboardCheck, FaUserCheck, FaShieldAlt, FaChartLine, FaFileContract } from 'react-icons/fa';
 
-const QualityHSE = () => {
+// --- DATA: Based on your input ---
+const commitments = [
+  {
+    id: 1,
+    title: "Strict Compliance",
+    icon: <FaClipboardCheck />,
+    desc: "Compliance with approved drawings and specifications."
+  },
+  {
+    id: 2,
+    title: "Qualified Resources",
+    icon: <FaUserCheck />,
+    desc: "Use of qualified manpower and approved materials."
+  },
+  {
+    id: 3,
+    title: "Safety First",
+    icon: <FaShieldAlt />,
+    desc: "Safe working practices aligned with local regulations."
+  },
+  {
+    id: 4,
+    title: "Continuous Improvement",
+    icon: <FaChartLine />,
+    desc: "Continuous monitoring and improvement of site activities."
+  }
+];
+
+const QualityPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  return (
-    <div className="pt-20">
+  // Parallax Header
+  const { scrollY } = useScroll();
+  const yHero = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacityHero = useTransform(scrollY, [0, 300], [1, 0]);
 
-      {/* --- PAGE HEADER --- */}
-      <div className="bg-[#00224D] py-20 text-center text-white">
-        <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4">Quality & HSE</h1>
-        <p className="text-lg text-gray-300 font-light tracking-wide max-w-2xl mx-auto">
-          Our commitment to excellence, safety, and environmental responsibility.
-        </p>
+  return (
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-orange-100 relative">
+
+      {/* ==========================
+          SECTION 1: HERO BANNER
+      ========================== */}
+      <div className="relative w-full h-[250px] md:h-[350px] overflow-hidden flex items-center justify-center">
+        {/* Background: Safety/Engineering focus */}
+        <div
+          className="absolute inset-0 bg-fixed bg-cover bg-center z-0"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop')" }}
+        >
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
+        </div>
+
+        <motion.div
+          style={{ y: yHero, opacity: opacityHero }}
+          className="relative z-10 text-center px-4"
+        >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <h1 className="text-4xl md:text-6xl font-heading font-bold text-white tracking-tighter mb-3 drop-shadow-2xl">
+              Quality & HSE
+            </h1>
+            <div className="flex items-center justify-center gap-3">
+               <div className="h-[2px] w-10 bg-orange-500"></div>
+               <span className="text-orange-500 font-bold tracking-[0.2em] uppercase text-xs md:text-sm">Safety & Standards</span>
+               <div className="h-[2px] w-10 bg-orange-500"></div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
 
-      {/* --- SECTION 1: QUALITY POLICY --- */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center gap-12">
+      {/* ==========================
+          SECTION 2: COMMITMENT GRID
+      ========================== */}
+      <section className="py-24 px-6 relative">
+        {/* Background Grid Pattern */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{
+             backgroundImage: `linear-gradient(#00224D 1px, transparent 1px), linear-gradient(90deg, #00224D 1px, transparent 1px)`,
+             backgroundSize: '40px 40px'
+          }}
+        ></div>
 
-            <div className="w-full md:w-1/2">
-              <div className="flex items-center gap-3 mb-4">
-                <FaCheckDouble className="text-4xl text-orange-500" />
-                <span className="text-orange-500 font-bold uppercase tracking-widest text-sm">
-                  Quality Assurance
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#00224D] mb-6">
-                Delivering Excellence
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                At Multiverse International, quality is not just a promise; it is our operational standard. We implement rigorous quality control measures at every stage of our trading and contracting processes to ensure client satisfaction.
-              </p>
+        <div className="container mx-auto relative z-10">
 
-              <ul className="space-y-4">
-                {[
-                  "Strict material inspection and verification.",
-                  "Compliance with Qatar Construction Standards (QCS).",
-                  "Continuous training for our technical workforce.",
-                  "Zero-defect policy in project handover."
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="mt-1.5 w-2 h-2 bg-[#00224D] rounded-full flex-shrink-0"></span>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+           {/* Header Text */}
+           <div className="max-w-3xl mx-auto text-center mb-16">
+             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#00224D] mb-6">
+               Commitment to Quality & HSE
+             </h2>
+             <p className="text-slate-600 text-lg leading-relaxed">
+               <span className="font-bold text-[#00224D]">Multiverse International Trading & Contracting</span> is committed to maintaining high standards of quality, health, safety, and environmental responsibility.
+             </p>
+           </div>
 
-            <div className="w-full md:w-1/2 bg-gray-100 p-8 rounded-lg border-l-4 border-orange-500">
-              <h3 className="text-xl font-bold text-[#00224D] mb-4">Our Quality Pledge</h3>
-              <p className="italic text-gray-600 leading-relaxed">
-                "We pledge to deliver products and services that meet or exceed the expectations of our clients. We achieve this through the active participation of our employees and the continuous improvement of our management systems."
-              </p>
-            </div>
+           {/* The 4-Card Grid */}
+           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+             {commitments.map((item, index) => (
+               <motion.div
+                 key={item.id}
+                 initial={{ opacity: 0, y: 30 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: index * 0.1, duration: 0.5 }}
+                 className="bg-white rounded-xl p-8 shadow-lg border border-slate-100 hover:border-orange-200 hover:shadow-2xl transition-all duration-300 group text-center"
+               >
+                 {/* Icon Bubble */}
+                 <div className="w-16 h-16 mx-auto bg-slate-50 rounded-full flex items-center justify-center text-3xl text-[#00224D] mb-6 group-hover:bg-[#00224D] group-hover:text-white transition-colors duration-300 shadow-inner">
+                   {item.icon}
+                 </div>
 
-          </div>
-        </div>
-      </section>
+                 <h3 className="text-xl font-bold text-[#00224D] mb-3">
+                   {item.title}
+                 </h3>
 
-      {/* --- SECTION 2: HSE (Health, Safety, Environment) --- */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-6">
-
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#00224D] mb-4">
-              Health, Safety & Environment
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              The safety of our people and the protection of our environment are our top priorities.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Card 1: Safety */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-t-4 border-orange-500">
-              <FaShieldAlt className="text-5xl text-[#00224D] mb-6" />
-              <h3 className="text-2xl font-bold text-[#00224D] mb-4">Safety First</h3>
-              <p className="text-gray-600 mb-4">
-                We maintain a zero-accident vision through regular risk assessments, safety briefings, and strict enforcement of PPE protocols on all sites.
-              </p>
-            </div>
-
-            {/* Card 2: Health */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-t-4 border-orange-500">
-              <FaHardHat className="text-5xl text-[#00224D] mb-6" />
-              <h3 className="text-2xl font-bold text-[#00224D] mb-4">Occupational Health</h3>
-              <p className="text-gray-600 mb-4">
-                We ensure a healthy working environment for our staff, adhering to local labor laws and providing welfare facilities that promote well-being.
-              </p>
-            </div>
-
-            {/* Card 3: Environment */}
-            <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all border-t-4 border-orange-500">
-              <FaLeaf className="text-5xl text-[#00224D] mb-6" />
-              <h3 className="text-2xl font-bold text-[#00224D] mb-4">Environment</h3>
-              <p className="text-gray-600 mb-4">
-                We are committed to sustainable practices, minimizing waste, and managing resources efficiently to reduce our environmental footprint.
-              </p>
-            </div>
-          </div>
+                 <p className="text-slate-500 text-sm leading-relaxed">
+                   {item.desc}
+                 </p>
+               </motion.div>
+             ))}
+           </div>
 
         </div>
       </section>
 
-      {/* --- CTA --- */}
-      <section className="bg-[#00224D] py-12 text-center">
-        <div className="container mx-auto px-6">
-          <h2 className="text-2xl text-white font-bold mb-6">committed to World-Class Safety Standards</h2>
-          <Link
-            to="/contact"
-            className="inline-block px-8 py-3 bg-orange-600 text-white font-bold rounded hover:bg-orange-700 transition-colors uppercase tracking-wide"
-          >
-            Contact Us
-          </Link>
-        </div>
+      {/* ==========================
+          SECTION 3: FOOTER CTA (White Style)
+      ========================== */}
+      <section className="py-20 px-6 bg-white border-t border-slate-100">
+         <div className="container mx-auto text-center">
+           <h2 className="text-2xl font-bold text-[#00224D] mb-4">
+             Require HSE Documentation?
+           </h2>
+           <p className="text-slate-500 mb-8 max-w-xl mx-auto">
+             We can provide detailed safety manuals and compliance certificates upon request.
+           </p>
+           <a href="/contact" className="inline-flex items-center justify-center bg-slate-100 text-[#00224D] px-8 py-3 rounded-lg font-bold hover:bg-orange-600 hover:text-white transition-colors border border-slate-200 shadow-sm">
+             <FaFileContract className="mr-2" /> Request Documents
+           </a>
+         </div>
       </section>
 
     </div>
   );
 };
 
-export default QualityHSE;
+export default QualityPage;
