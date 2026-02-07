@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { FaAward, FaUserClock, FaHandHoldingHeart } from 'react-icons/fa'; // New Icons
+import { FaAward, FaUserClock, FaHandHoldingHeart } from 'react-icons/fa';
 
 // --- VECTOR BACKGROUND COMPONENT ---
 const BlueprintBackground = () => (
@@ -46,6 +46,7 @@ const AboutPage = () => {
       {/* ==========================
           SECTION 1: HERO BANNER
       ========================== */}
+      {/* Kept EXACTLY as provided */}
       <div className="relative w-full h-[250px] md:h-[350px] overflow-hidden flex items-center justify-center">
         <div
           className="absolute inset-0 bg-fixed bg-cover bg-center z-0"
@@ -79,16 +80,18 @@ const AboutPage = () => {
 
 
       {/* ==========================
-          SECTION 2: COMPANY OVERVIEW (Version 4: Architectural Dark Card)
+          SECTION 2: COMPANY OVERVIEW
       ========================== */}
-      <section className="py-24 bg-white relative z-10 overflow-hidden">
+      <section className="py-16 md:py-24 bg-white relative z-10 overflow-hidden">
         <div className="container mx-auto px-6">
+
+          {/* Main Layout: Kept your exact structure (flex-col mobile, flex-row desktop) */}
           <div className="relative flex flex-col lg:flex-row items-center justify-end">
 
-            {/* --- 1. IMAGE (Background Layer) --- */}
-            {/* Placed on the Right, taking up 60% of width */}
+            {/* --- 1. IMAGE --- */}
             <motion.div
-              className="w-full lg:w-[65%] h-[500px] relative z-0 rounded-lg overflow-hidden shadow-2xl"
+              // ✅ FIX: h-[300px] for mobile, kept lg:h-[500px] for desktop
+              className="w-full lg:w-[65%] h-[300px] lg:h-[500px] relative z-0 rounded-lg overflow-hidden shadow-2xl"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -99,31 +102,31 @@ const AboutPage = () => {
                  alt="Construction Site"
                  className="w-full h-full object-cover"
                />
-               {/* Gradient Overlay to help blend */}
                <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent lg:hidden"></div>
             </motion.div>
 
 
-            {/* --- 2. TEXT CARD (Overlay Layer) --- */}
-            {/* Floats on the Left, overlapping the image */}
+            {/* --- 2. TEXT CARD --- */}
             <motion.div
-              className="w-full lg:w-[50%] bg-[#00224D] text-white p-10 md:p-14 shadow-2xl relative z-10 mt-[-60px] lg:mt-0 lg:mr-[-100px] lg:absolute lg:left-0 rounded-r-lg"
+              // ✅ FIX: Reduced padding for mobile (p-6), kept (lg:p-14)
+              // ✅ FIX: Changed rounded-r-lg to rounded-lg (mobile) -> lg:rounded-r-lg (desktop)
+              // Desktop layout classes (lg:absolute, lg:left-0) are UNTOUCHED
+              className="w-full lg:w-[50%] bg-[#00224D] text-white p-6 md:p-10 lg:p-14 shadow-2xl relative z-10 mt-[-60px] lg:mt-0 lg:mr-[-100px] lg:absolute lg:left-0 rounded-lg lg:rounded-r-lg"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-               {/* Decorative Orange Line */}
                <div className="w-16 h-1 bg-orange-600 mb-6"></div>
 
                <h2 className="text-sm font-bold text-orange-500 uppercase tracking-widest mb-3">
                  Who We Are
                </h2>
-               <h3 className="text-3xl md:text-4xl font-heading font-bold mb-6 leading-tight">
+               <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-6 leading-tight">
                  Reliable Trading & <br/>Contracting Solutions.
                </h3>
 
-               <div className="space-y-6 text-gray-300 leading-relaxed text-lg font-light mb-8">
+               <div className="space-y-6 text-gray-300 leading-relaxed text-base lg:text-lg font-light mb-8">
                  <p>
                    <span className="font-bold text-white">Multiverse International</span> is built on the belief that successful projects are driven by planning, accountability, and professional execution.
                  </p>
@@ -133,18 +136,18 @@ const AboutPage = () => {
                </div>
 
                {/* Features Row */}
-               <div className="grid grid-cols-3 gap-6 border-t border-white/10 pt-6">
+               <div className="grid grid-cols-3 gap-2 md:gap-6 border-t border-white/10 pt-6">
                   <div className="flex flex-col items-center text-center">
-                     <FaAward className="text-2xl text-orange-500 mb-2" />
-                     <span className="text-xs uppercase tracking-wider font-bold text-gray-400">Certified</span>
+                     <FaAward className="text-xl md:text-2xl text-orange-500 mb-2" />
+                     <span className="text-[10px] md:text-xs uppercase tracking-wider font-bold text-gray-400">Certified</span>
                   </div>
                   <div className="flex flex-col items-center text-center">
-                     <FaUserClock className="text-2xl text-orange-500 mb-2" />
-                     <span className="text-xs uppercase tracking-wider font-bold text-gray-400">Experienced</span>
+                     <FaUserClock className="text-xl md:text-2xl text-orange-500 mb-2" />
+                     <span className="text-[10px] md:text-xs uppercase tracking-wider font-bold text-gray-400">Experienced</span>
                   </div>
                   <div className="flex flex-col items-center text-center">
-                     <FaHandHoldingHeart className="text-2xl text-orange-500 mb-2" />
-                     <span className="text-xs uppercase tracking-wider font-bold text-gray-400">Reliable</span>
+                     <FaHandHoldingHeart className="text-xl md:text-2xl text-orange-500 mb-2" />
+                     <span className="text-[10px] md:text-xs uppercase tracking-wider font-bold text-gray-400">Reliable</span>
                   </div>
                </div>
 
@@ -173,11 +176,12 @@ const AboutPage = () => {
             </div>
 
             {/* --- ITEM 1: VISION --- */}
-            <div className="grid md:grid-cols-2 gap-12 items-start mb-32 relative group">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start mb-16 md:mb-32 relative group">
               <div className="hidden md:flex absolute left-1/2 top-2 transform -translate-x-1/2 z-10 items-center justify-center">
                  <div className="absolute w-8 h-8 bg-orange-500/20 rounded-full animate-ping"></div>
                  <div className="w-5 h-5 bg-[#00224D] border-4 border-white shadow-lg rotate-45 z-10 group-hover:bg-orange-600 transition-colors duration-500"></div>
               </div>
+
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -185,9 +189,13 @@ const AboutPage = () => {
                 transition={{ duration: 0.6 }}
                 className="text-left md:text-right md:pr-20"
               >
-                 <h3 className="text-4xl font-heading font-bold text-[#00224D] mb-6 group-hover:text-orange-600 transition-colors duration-300">
-                    Our Vision
-                 </h3>
+                 <div className="flex items-center md:justify-end gap-3 mb-4 md:mb-6">
+                    {/* ✅ Mobile Icon Added (Hidden on Desktop) */}
+                    <FaAward className="md:hidden text-2xl text-orange-600" />
+                    <h3 className="text-3xl md:text-4xl font-heading font-bold text-[#00224D] mb-0 group-hover:text-orange-600 transition-colors duration-300">
+                      Our Vision
+                    </h3>
+                 </div>
                  <p className="text-slate-600 text-lg leading-relaxed">
                    To become a trusted and recognized contracting and trading partner in Qatar, known for dependable delivery, transparent communication, and consistent quality across every assignment we undertake.
                  </p>
@@ -196,12 +204,13 @@ const AboutPage = () => {
             </div>
 
             {/* --- ITEM 2: MISSION --- */}
-            <div className="grid md:grid-cols-2 gap-12 items-start relative group">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start relative group">
               <div className="hidden md:flex absolute left-1/2 top-2 transform -translate-x-1/2 z-10 items-center justify-center">
                  <div className="absolute w-8 h-8 bg-orange-500/20 rounded-full animate-ping"></div>
                  <div className="w-5 h-5 bg-[#00224D] border-4 border-white shadow-lg rotate-45 z-10 group-hover:bg-orange-600 transition-colors duration-500"></div>
               </div>
               <div className="hidden md:block"></div>
+
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -209,28 +218,33 @@ const AboutPage = () => {
                 transition={{ duration: 0.6 }}
                 className="text-left md:pl-20"
               >
-                 <h3 className="text-4xl font-heading font-bold text-[#00224D] mb-8 group-hover:text-orange-600 transition-colors duration-300">
-                    Our Mission
-                 </h3>
+                 <div className="flex items-center gap-3 mb-6 md:mb-8">
+                    {/* ✅ Mobile Icon Added (Hidden on Desktop) */}
+                    <FaHandHoldingHeart className="md:hidden text-2xl text-orange-600" />
+                    <h3 className="text-3xl md:text-4xl font-heading font-bold text-[#00224D] mb-0 group-hover:text-orange-600 transition-colors duration-300">
+                      Our Mission
+                    </h3>
+                 </div>
+
                  <ul className="space-y-6">
-                    {[
-                      "To deliver cost-effective and technically sound solutions",
-                      "To follow Qatar regulations, standards, and HSE requirements without compromise",
-                      "To build long-term relationships based on trust and performance",
-                      "To continuously improve our systems, skills, and service quality"
-                    ].map((item, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1, duration: 0.5 }}
-                        className="flex items-start gap-5 p-4 rounded-lg hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-slate-300"
-                      >
-                        <div className="mt-1.5 w-2 h-2 bg-orange-600 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(234,88,12,0.6)]"></div>
-                        <span className="text-slate-600 text-lg leading-relaxed">{item}</span>
-                      </motion.li>
-                    ))}
+                   {[
+                     "To deliver cost-effective and technically sound solutions",
+                     "To follow Qatar regulations, standards, and HSE requirements without compromise",
+                     "To build long-term relationships based on trust and performance",
+                     "To continuously improve our systems, skills, and service quality"
+                   ].map((item, i) => (
+                     <motion.li
+                       key={i}
+                       initial={{ opacity: 0, y: 10 }}
+                       whileInView={{ opacity: 1, y: 0 }}
+                       viewport={{ once: true }}
+                       transition={{ delay: i * 0.1, duration: 0.5 }}
+                       className="flex items-start gap-5 p-4 rounded-lg hover:bg-white hover:shadow-md transition-all duration-300 border border-transparent hover:border-slate-300"
+                     >
+                       <div className="mt-1.5 w-2 h-2 bg-orange-600 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(234,88,12,0.6)]"></div>
+                       <span className="text-slate-600 text-lg leading-relaxed">{item}</span>
+                     </motion.li>
+                   ))}
                  </ul>
               </motion.div>
             </div>

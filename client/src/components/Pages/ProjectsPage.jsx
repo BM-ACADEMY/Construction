@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaBuilding } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // --- DATA ---
 const projectsData = [
@@ -49,42 +50,54 @@ const projectsData = [
 ];
 
 // --- ANIMATION VARIANTS ---
+// 1. Grid Container (Staggers the children)
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
+      staggerChildren: 0.15, // Delay between each card appearing
+      delayChildren: 0.2
     }
   }
 };
 
+// 2. Card Entry Animation (Slide Up & Fade In)
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 50 } }
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 50, damping: 15 }
+  }
+};
+
+// 3. Text Reveal Animation
+const textReveal = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 // --- COMPONENT: Vector Background ---
 const BlueprintGrid = () => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    {/* Engineering Grid */}
     <div className="absolute inset-0 opacity-[0.03]"
       style={{
         backgroundImage: `linear-gradient(#00224D 1px, transparent 1px), linear-gradient(90deg, #00224D 1px, transparent 1px)`,
         backgroundSize: '40px 40px'
       }}
     ></div>
-
-    {/* Floating Orbs (Animated) */}
+    {/* Floating Orbs */}
     <motion.div
       animate={{ x: [0, 100, 0], y: [0, -50, 0], opacity: [0.1, 0.3, 0.1] }}
       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500 rounded-full blur-[120px] opacity-10"
+      className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-orange-500 rounded-full blur-[120px] opacity-10"
     />
     <motion.div
       animate={{ x: [0, -100, 0], y: [0, 50, 0], opacity: [0.1, 0.2, 0.1] }}
       transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-      className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#00224D] rounded-full blur-[100px] opacity-10"
+      className="absolute bottom-0 left-0 w-[250px] md:w-[400px] h-[250px] md:h-[400px] bg-[#00224D] rounded-full blur-[100px] opacity-10"
     />
   </div>
 );
@@ -137,23 +150,25 @@ const ProjectsPage = () => {
       {/* ==========================
           SECTION 2: ANIMATED GRID
       ========================== */}
-      <section className="py-20 px-4 md:px-8 bg-slate-50 relative overflow-hidden">
-        {/* Background Animation */}
+      <section className="py-16 px-4 md:py-20 md:px-8 bg-slate-50 relative overflow-hidden">
         <BlueprintGrid />
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10"
+          viewport={{ once: true, margin: "-50px" }} // Triggers animation slightly before scrolling into view
+          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-10"
         >
             {projectsData.map((project) => (
               <motion.div
                 key={project.id}
                 variants={cardVariants}
-                whileHover={{ y: -10 }}
-                className="relative group h-[400px] rounded-3xl overflow-hidden cursor-pointer shadow-lg border border-slate-200 bg-white"
+                // Desktop Hover: Lift up
+                whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+                // Mobile Tap: Press down slightly
+                whileTap={{ scale: 0.98 }}
+                className="relative group h-[320px] md:h-[400px] rounded-3xl overflow-hidden cursor-pointer shadow-lg border border-slate-200 bg-white"
               >
                 {/* 1. BACKGROUND IMAGE */}
                 <motion.img
@@ -165,19 +180,25 @@ const ProjectsPage = () => {
                 />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#00224D]/90 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
+                {/* Mobile: Always slightly visible (opacity-60) for text legibility */}
+                {/* Desktop: Hidden initially (opacity-0), visible on hover (opacity-60) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#00224D]/90 via-transparent to-transparent opacity-60 md:opacity-0 md:group-hover:opacity-60 transition-opacity duration-300"></div>
 
                 {/* 2. FLOATING INFO PILL */}
-                <div className="absolute bottom-6 left-6 right-6 z-20 translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out">
-                   <div className="bg-white rounded-2xl p-5 shadow-2xl border border-slate-100 flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600">
-                        <FaBuilding />
+                <div className="absolute bottom-6 left-4 right-4 md:left-6 md:right-6 z-20
+                                opacity-100 translate-y-0
+                                md:translate-y-10 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100
+                                transition-all duration-500 ease-out">
+
+                   <div className="bg-white rounded-2xl p-4 md:p-5 shadow-2xl border border-slate-100 flex items-center gap-3 md:gap-4">
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-orange-50 flex-shrink-0 flex items-center justify-center text-orange-600">
+                        <FaBuilding className="text-sm md:text-base" />
                       </div>
                       <div>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                        <span className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                            {project.category}
                         </span>
-                        <h3 className="text-lg font-bold text-[#00224D] leading-tight">
+                        <h3 className="text-base md:text-lg font-bold text-[#00224D] leading-tight">
                           {project.title}
                         </h3>
                          <p className="text-slate-500 text-xs mt-0.5">
@@ -195,35 +216,35 @@ const ProjectsPage = () => {
       {/* ==========================
           SECTION 3: FOOTER CTA
       ========================== */}
-      <section className="py-24 px-6 bg-white border-t border-slate-100 relative overflow-hidden">
-         {/* Subtle Texture */}
+      <section className="py-16 md:py-24 px-6 bg-white border-t border-slate-100 relative overflow-hidden">
          <div className="absolute inset-0 opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
          <div className="container mx-auto text-center relative z-10">
-           <motion.h2
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             transition={{ delay: 0.1 }}
-             className="text-3xl md:text-4xl font-bold text-[#00224D] mb-4"
+           <motion.div
+             variants={textReveal}
+             initial="hidden"
+             whileInView="show"
+             viewport={{ once: true }}
            >
-             Ready to Start?
-           </motion.h2>
-           <motion.p
-             initial={{ opacity: 0 }}
-             whileInView={{ opacity: 1 }}
-             transition={{ delay: 0.2 }}
-             className="text-slate-500 mb-10 max-w-2xl mx-auto text-lg"
-           >
-             Whether you need material supply or site execution, our team is ready to assist.
-           </motion.p>
-           <motion.a
-             whileHover={{ scale: 1.05 }}
-             whileTap={{ scale: 0.95 }}
-             href="/contact"
-             className="inline-block bg-orange-600 text-white px-10 py-4 rounded-lg font-bold shadow-lg hover:bg-orange-700 hover:shadow-orange-500/30 transition-all text-lg"
-           >
-             Get a Free Quote
-           </motion.a>
+             <h2 className="text-2xl md:text-4xl font-bold text-[#00224D] mb-4">
+               Ready to Start?
+             </h2>
+             <p className="text-slate-500 mb-8 md:mb-10 max-w-2xl mx-auto text-sm md:text-lg">
+               Whether you need material supply or site execution, our team is ready to assist.
+             </p>
+             <Link
+               to="/contact"
+               className="inline-block"
+             >
+               <motion.button
+                 whileHover={{ scale: 1.05 }}
+                 whileTap={{ scale: 0.95 }}
+                 className="bg-orange-600 text-white px-8 py-3 md:px-10 md:py-4 rounded-lg font-bold shadow-lg hover:bg-orange-700 hover:shadow-orange-500/30 transition-all text-sm md:text-lg"
+               >
+                 Get a Free Quote
+               </motion.button>
+             </Link>
+           </motion.div>
          </div>
       </section>
 
