@@ -48,10 +48,10 @@ const ContactPage = () => {
       }
     } catch (err) {
       console.error(err);
-      setStatus({ 
-        loading: false, 
-        success: false, 
-        error: err.response?.data?.message || "Failed to send message." 
+      setStatus({
+        loading: false,
+        success: false,
+        error: err.response?.data?.message || "Failed to send message."
       });
     }
   };
@@ -88,7 +88,7 @@ const ContactPage = () => {
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white p-8 rounded-xl shadow-xl border-b-4 border-orange-500 text-center hover:-translate-y-2 transition-transform duration-300">
               <div className="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center text-2xl text-orange-600 mx-auto mb-4"><FaPhoneAlt /></div>
               <h3 className="text-xl font-bold text-[#00224D] mb-2">Call Us</h3>
-              <p className="text-slate-500 mb-4 text-sm">Mon-Sat from 8am to 6pm</p>
+              <p className="text-slate-500 mb-4 text-sm">Sat-Thursday from 8am to 6pm</p>
               <a href="tel:+97477329077" className="text-lg font-bold text-[#00224D] hover:text-orange-600 block">+974 7732 9077</a>
             </motion.div>
 
@@ -121,7 +121,7 @@ const ContactPage = () => {
               <p className="text-slate-500 mb-8">Ready to start your project? Fill out the details below.</p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                
+
                 {/* Name */}
                 <div>
                   <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Name *</label>

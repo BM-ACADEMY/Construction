@@ -137,7 +137,7 @@ const QualityPage = () => {
       {/* ==========================
           SECTION 3: FOOTER CTA (White Style)
       ========================== */}
-      <section className="py-16 md:py-20 px-6 bg-white border-t border-slate-100">
+      {/* <section className="py-16 md:py-20 px-6 bg-white border-t border-slate-100">
          <div className="container mx-auto text-center">
            <h2 className="text-xl md:text-2xl font-bold text-[#00224D] mb-4">
              Require HSE Documentation?
@@ -152,7 +152,7 @@ const QualityPage = () => {
              <FaFileContract className="mr-2" /> Request Documents
            </Link>
          </div>
-      </section>
+      </section> */}
 
     </div>
   );

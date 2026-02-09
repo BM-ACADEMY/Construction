@@ -53,10 +53,11 @@ const Navbar = () => {
               </Link>
             ))}
 
-            {/* ✅ DESKTOP GOOGLE TRANSLATE (Unique ID) */}
-            <div className="ml-2">
-               <GoogleTranslate id="google_translate_desktop" />
-            </div>
+            {/* ✅ DESKTOP GOOGLE TRANSLATE */}
+<div className="ml-2">
+   {/* Give it a specific ID for desktop */}
+   <GoogleTranslate targetId="google_translate_desktop" />
+</div>
 
             {/* 'Get Quote' Button */}
             <Link
@@ -94,6 +95,7 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                // Added overflow-visible specifically for the dropdown to pop out if needed
                 className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white shadow-2xl z-[60] lg:hidden flex flex-col"
               >
                 {/* DRAWER HEADER */}
@@ -107,11 +109,12 @@ const Navbar = () => {
                 {/* DRAWER CONTENT */}
                 <div className="flex flex-col p-6 space-y-4 overflow-y-auto">
 
-                  {/* ✅ MOBILE GOOGLE TRANSLATE (Unique ID) */}
-                  <div className="flex flex-col mb-4 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                     <span className="text-xs font-bold text-gray-400 uppercase mb-2">Select Language</span>
-                     <GoogleTranslate id="google_translate_mobile" />
-                  </div>
+                  {/* ✅ MOBILE GOOGLE TRANSLATE */}
+<div className="flex flex-col mb-4 p-3 bg-gray-50 rounded-lg border border-gray-100">
+    <span className="text-xs font-bold text-gray-400 uppercase mb-2">Select Language</span>
+    {/* Give it a DIFFERENT specific ID for mobile */}
+    <GoogleTranslate targetId="google_translate_mobile" />
+</div>
 
                   {navLinks.map((link, index) => (
                     <Link
