@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 // Import Logo
 import logo from '../../assets/constructionlogo.png';
@@ -11,6 +11,7 @@ import GoogleTranslate from '../translate/GoogleTranslate'; // Adjust path as ne
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
 
   // 🎨 YOUR COLORS
   const brandBlue = "bg-[#00224D]";
@@ -33,7 +34,11 @@ const Navbar = () => {
         <div className="container mx-auto px-4 lg:px-8 h-24 flex justify-between items-center">
 
           {/* LOGO AREA */}
-          <Link to="/" className="flex items-center shrink-0">
+          <Link 
+            to="/" 
+            className="flex items-center shrink-0"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
             <img
               src={logo}
               alt="Multiverse International"
@@ -48,6 +53,11 @@ const Navbar = () => {
                 key={index}
                 to={link.path}
                 className="text-slate-700 font-semibold text-sm hover:text-orange-600 transition-colors uppercase tracking-tight whitespace-nowrap"
+                onClick={() => {
+                  if (link.path === pathname) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
               >
                 {link.title}
               </Link>
@@ -98,7 +108,15 @@ const Navbar = () => {
               >
                 {/* DRAWER HEADER */}
                 <div className="p-6 flex justify-between items-center border-b border-gray-100">
-                    <img src={logo} alt="Logo" className="h-10 w-auto" />
+                    <Link 
+                      to="/" 
+                      onClick={() => {
+                        setIsOpen(false);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                    >
+                      <img src={logo} alt="Logo" className="h-10 w-auto" />
+                    </Link>
                     <button onClick={() => setIsOpen(false)} className={`${textBlue} text-2xl p-2`}>
                         <FaTimes />
                     </button>
@@ -118,7 +136,12 @@ const Navbar = () => {
                     <Link
                       key={index}
                       to={link.path}
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => {
+                        setIsOpen(false);
+                        if (link.path === pathname) {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                      }}
                       className="text-slate-700 font-bold text-lg hover:text-orange-600 hover:pl-2 transition-all block py-2 border-b border-slate-50 last:border-0"
                     >
                       {link.title}
