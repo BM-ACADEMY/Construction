@@ -11,11 +11,7 @@ const Footer = () => {
     <footer className="bg-[#00152e] text-slate-300 pt-10 pb-8 md:pt-16 border-t border-slate-800 font-sans">
       <div className="container mx-auto px-6">
 
-        {/* ✅ Responsive Grid:
-            - grid-cols-1 (Mobile: Stacked)
-            - md:grid-cols-2 (Tablet: 2x2 grid)
-            - lg:grid-cols-4 (Desktop: 4 columns in a row)
-        */}
+        {/* ✅ Responsive Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
 
           {/* Column 1: Brand */}
@@ -27,10 +23,6 @@ const Footer = () => {
             <p className="text-sm leading-relaxed text-slate-400 mb-6">
               Your trusted partner for reliable trading and contracting solutions in Qatar. Building visions into reality with quality and safety.
             </p>
-            {/* <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded bg-slate-800 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors"><FaLinkedin /></a>
-              <a href="#" className="w-10 h-10 rounded bg-slate-800 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors"><FaFacebook /></a>
-            </div> */}
           </div>
 
           {/* Column 2: Quick Links */}
@@ -60,18 +52,42 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-4 md:mb-6 uppercase tracking-wider text-sm">Contact Us</h4>
             <ul className="space-y-4 text-sm">
+              
+              {/* ✅ LOCATION LINK */}
               <li className="flex items-start gap-3">
                 <FaMapMarkerAlt className="text-orange-500 mt-1 flex-shrink-0" />
-                <span>Doha, Qatar</span>
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=Doha,+Qatar" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-orange-500 transition-colors"
+                >
+                  Doha, Qatar
+                </a>
               </li>
+
+              {/* ✅ PHONE LINK */}
               <li className="flex items-center gap-3">
                 <FaPhoneAlt className="text-orange-500 flex-shrink-0" />
-                <span>+974 7732 9077</span>
+                <a 
+                  href="tel:+97477329077" 
+                  className="hover:text-orange-500 transition-colors"
+                >
+                  +974 7732 9077
+                </a>
               </li>
+
+              {/* ✅ EMAIL LINK */}
               <li className="flex items-center gap-3">
                 <FaEnvelope className="text-orange-500 flex-shrink-0" />
-                <span>info@multiverseintl.com</span>
+                <a 
+                  href="mailto:info@multiverseintl.com" 
+                  className="hover:text-orange-500 transition-colors"
+                >
+                  info@multiverseintl.com
+                </a>
               </li>
+
             </ul>
           </div>
 

@@ -15,6 +15,36 @@ const BlueprintGrid = () => (
   </div>
 );
 
+// --- ANIMATION VARIANTS ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // Delays each child by 0.2s
+      delayChildren: 0.1
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: { 
+    y: 0, 
+    opacity: 1,
+    transition: { type: "spring", stiffness: 100, damping: 12 }
+  }
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: "easeOut" } 
+  }
+};
+
 const ContactPage = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -81,31 +111,54 @@ const ContactPage = () => {
         </motion.div>
       </div>
 
-      {/* CONTACT INFO CARDS */}
+      {/* CONTACT INFO CARDS (Staggered Animation) */}
       <section className="py-20 px-6 relative z-10 -mt-10">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-white p-8 rounded-xl shadow-xl border-b-4 border-orange-500 text-center hover:-translate-y-2 transition-transform duration-300">
-              <div className="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center text-2xl text-orange-600 mx-auto mb-4"><FaPhoneAlt /></div>
-              <h3 className="text-xl font-bold text-[#00224D] mb-2">Call Us</h3>
-              <p className="text-slate-500 mb-4 text-sm">Sat-Thursday from 8am to 6pm</p>
-              <a href="tel:+97477329077" className="text-lg font-bold text-[#00224D] hover:text-orange-600 block">+974 7732 9077</a>
-            </motion.div>
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid md:grid-cols-3 gap-6"
+          >
 
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-white p-8 rounded-xl shadow-xl border-b-4 border-orange-500 text-center hover:-translate-y-2 transition-transform duration-300">
-              <div className="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center text-2xl text-orange-600 mx-auto mb-4"><FaEnvelope /></div>
-              <h3 className="text-xl font-bold text-[#00224D] mb-2">Email Us</h3>
-              <p className="text-slate-500 mb-4 text-sm">We reply within 24 hours</p>
-              <a href="mailto:info@multiverseintl.com" className="text-lg font-bold text-[#00224D] hover:text-orange-600 block">info@multiverseintl.com</a>
-            </motion.div>
+            {/* Phone */}
+<motion.div variants={cardVariants} 
+  className="bg-white p-8 rounded-xl shadow-lg border border-slate-100 hover:border-orange-500 transition-all duration-300 hover:shadow-2xl group flex flex-col items-start">
+  <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center text-xl mb-6 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+    <FaPhoneAlt />
+  </div>
+  <h3 className="text-lg font-bold text-[#00224D] uppercase tracking-wider mb-2">Call Us</h3>
+  {/* UPDATED STYLE BELOW */}
+  <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">Mon — Fri / 8am — 6pm</p>
+  <a href="tel:+97477329077" className="text-2xl font-bold text-slate-800 group-hover:text-orange-600 transition-colors">+974 7732 9077</a>
+</motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="bg-white p-8 rounded-xl shadow-xl border-b-4 border-orange-500 text-center hover:-translate-y-2 transition-transform duration-300">
-              <div className="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center text-2xl text-orange-600 mx-auto mb-4"><FaMapMarkerAlt /></div>
-              <h3 className="text-xl font-bold text-[#00224D] mb-2">Visit Us</h3>
-              <p className="text-slate-500 mb-4 text-sm">Multiverse International</p>
-              <p className="text-lg font-bold text-[#00224D]">Doha, Qatar</p>
-            </motion.div>
-          </div>
+{/* Email */}
+<motion.div variants={cardVariants} 
+  className="bg-white p-8 rounded-xl shadow-lg border border-slate-100 hover:border-orange-500 transition-all duration-300 hover:shadow-2xl group flex flex-col items-start">
+  <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center text-xl mb-6 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+    <FaEnvelope />
+  </div>
+  <h3 className="text-lg font-bold text-[#00224D] uppercase tracking-wider mb-2">Email Us</h3>
+  {/* UPDATED STYLE BELOW */}
+  <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">Online Support 24/7</p>
+  <a href="mailto:info@multiverseint.com" className="text-lg font-bold text-slate-800 group-hover:text-orange-600 transition-colors break-all">info@multiverseintl.com</a>
+</motion.div>
+
+{/* Visit */}
+<motion.div variants={cardVariants} 
+  className="bg-white p-8 rounded-xl shadow-lg border border-slate-100 hover:border-orange-500 transition-all duration-300 hover:shadow-2xl group flex flex-col items-start">
+  <div className="w-12 h-12 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center text-xl mb-6 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+    <FaMapMarkerAlt />
+  </div>
+  <h3 className="text-lg font-bold text-[#00224D] uppercase tracking-wider mb-2">Visit Us</h3>
+  {/* UPDATED STYLE BELOW */}
+  <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.15em] mb-4">Main Office HQ</p>
+  <p className="text-xl font-bold text-slate-800 group-hover:text-orange-600 transition-colors">Doha, Qatar</p>
+</motion.div>
+
+          </motion.div>
         </div>
       </section>
 
@@ -113,7 +166,14 @@ const ContactPage = () => {
       <section className="pb-24 px-6 relative">
         <BlueprintGrid />
         <div className="container mx-auto relative z-10">
-          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+            className="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col lg:flex-row"
+          >
 
             {/* CONTACT FORM */}
             <div className="lg:w-1/2 p-8 md:p-12">
@@ -125,25 +185,45 @@ const ContactPage = () => {
                 {/* Name */}
                 <div>
                   <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Name *</label>
-                  <input type="text" name="name" required value={formData.name} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all" placeholder="John Doe" />
+                  <motion.input 
+                    whileFocus={{ scale: 1.01, borderColor: "#F97316" }}
+                    type="text" name="name" required value={formData.name} onChange={handleChange} 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-orange-500 transition-all" 
+                    placeholder="John Doe" 
+                  />
                 </div>
 
                 {/* Phone & Email (Side by Side) */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Phone *</label>
-                    <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all" placeholder="+974 ..." />
+                    <motion.input 
+                      whileFocus={{ scale: 1.01, borderColor: "#F97316" }}
+                      type="tel" name="phone" required value={formData.phone} onChange={handleChange} 
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-orange-500 transition-all" 
+                      placeholder="+974 ..." 
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email *</label>
-                    <input type="email" name="email" required value={formData.email} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all" placeholder="john@email.com" />
+                    <motion.input 
+                      whileFocus={{ scale: 1.01, borderColor: "#F97316" }}
+                      type="email" name="email" required value={formData.email} onChange={handleChange} 
+                      className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-orange-500 transition-all" 
+                      placeholder="john@email.com" 
+                    />
                   </div>
                 </div>
 
                 {/* Message */}
                 <div>
                   <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Message</label>
-                  <textarea name="message" rows="4" value={formData.message} onChange={handleChange} className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all resize-none" placeholder="How can we help you?"></textarea>
+                  <motion.textarea 
+                    whileFocus={{ scale: 1.01, borderColor: "#F97316" }}
+                    name="message" rows="4" value={formData.message} onChange={handleChange} 
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-orange-500 transition-all resize-none" 
+                    placeholder="How can we help you?"
+                  ></motion.textarea>
                 </div>
 
                 {/* Status */}
@@ -161,22 +241,32 @@ const ContactPage = () => {
                 </AnimatePresence>
 
                 {/* Button */}
-                <button type="submit" disabled={status.loading} className="w-full bg-[#00224D] text-white font-bold py-4 rounded-lg shadow-lg hover:bg-orange-600 disabled:bg-slate-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 group">
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
+                  type="submit" disabled={status.loading} 
+                  className="w-full bg-[#00224D] text-white font-bold py-4 rounded-lg shadow-lg hover:bg-orange-600 disabled:bg-slate-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2 group"
+                >
                   {status.loading ? <span>Sending...</span> : (
                     <><span className="group-hover:translate-x-1 transition-transform">Send Message</span><FaPaperPlane className="text-sm group-hover:translate-x-1 transition-transform" /></>
                   )}
-                </button>
+                </motion.button>
               </form>
             </div>
 
             {/* MAP & WHATSAPP */}
             <div className="lg:w-1/2 bg-slate-100 relative min-h-[400px] border-l border-slate-200">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230888.7770732864!2d51.36531398188289!3d25.284097401938965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45c534cdc43bc3%3A0x23d08538f8dc55f9!2sDoha%2C%20Qatar!5e0!3m2!1sen!2sin!4v1707123456789!5m2!1sen!2sin" className="absolute inset-0 w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-500" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
-              <a href="https://wa.me/97477329077" target="_blank" rel="noreferrer" className="absolute bottom-8 right-8 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20bd5a] hover:scale-110 transition-all z-10 flex items-center gap-2 group">
-                <FaWhatsapp className="text-3xl" /> <span className="font-bold hidden md:inline pr-2">Chat on WhatsApp</span>
-              </a>
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230888.7770732864!2d51.36531398188289!3d25.284097401938965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45c534cdc43bc3%3A0x23d08538f8dc55f9!2sDoha%2C%20Qatar!5e0!3m2!1sen!2sin!4v1707123456789!5m2!1sen!2sin" 
+                className="absolute inset-0 w-full h-full border-0" 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+              
+              
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>
