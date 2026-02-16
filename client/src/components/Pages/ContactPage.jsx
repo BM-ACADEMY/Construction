@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaWhatsapp, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 import axios from 'axios';
+import { Helmet } from "react-helmet";
+
 
 // --- COMPONENT: Background Pattern ---
 const BlueprintGrid = () => (
@@ -93,6 +95,15 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-orange-100 relative">
+      <Helmet>
+  <title>Contact Us | Multiverse International Trading & Contracting Qatar</title>
+  <meta
+    name="description"
+    content="Contact Multiverse International Trading & Contracting for trading and contracting services in Qatar. Get project consultation and support from our experts."
+  />
+  <link rel="canonical" href="https://multiverseint.com/contact" />
+</Helmet>
+
 
       {/* HERO BANNER */}
       <div className="relative w-full h-[250px] md:h-[350px] overflow-hidden flex items-center justify-center">

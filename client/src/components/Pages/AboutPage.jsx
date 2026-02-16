@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { FaAward, FaUserClock, FaHandHoldingHeart } from 'react-icons/fa';
+import { Helmet } from "react-helmet";
+
 
 // --- VECTOR BACKGROUND COMPONENT ---
 const BlueprintBackground = () => (
@@ -42,6 +44,15 @@ const AboutPage = () => {
 
   return (
     <div className="font-sans text-slate-800 bg-white relative selection:bg-orange-100">
+      <Helmet>
+  <title>About Us | Multiverse International Trading & Contracting Qatar</title>
+  <meta
+    name="description"
+    content="Learn about Multiverse International Trading & Contracting, a trusted trading and contracting company in Qatar delivering quality, safety, and reliable project solutions."
+  />
+  <link rel="canonical" href="https://multiverseint.com/about" />
+</Helmet>
+
 
       {/* ==========================
           SECTION 1: HERO BANNER

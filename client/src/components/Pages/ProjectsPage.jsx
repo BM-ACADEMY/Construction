@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaBuilding } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet";
+
 
 // --- DATA ---
 const projectsData = [
@@ -114,6 +116,15 @@ const ProjectsPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-orange-100 relative">
+      <Helmet>
+  <title>Our Projects | Multiverse International Trading & Contracting Qatar</title>
+  <meta
+    name="description"
+    content="View our completed projects including villas, commercial buildings, MEP works, and fit-out solutions delivered across Qatar with quality and expertise."
+  />
+  <link rel="canonical" href="https://multiverseint.com/projects" />
+</Helmet>
+
 
       {/* ==========================
           SECTION 1: HERO BANNER

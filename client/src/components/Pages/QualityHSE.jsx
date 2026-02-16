@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaClipboardCheck, FaUserCheck, FaShieldAlt, FaChartLine } from 'react-icons/fa';
+import { Helmet } from "react-helmet";
 
 // --- DATA ---
 const commitments = [
@@ -72,6 +73,14 @@ const QualityPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-orange-100 relative">
+      <Helmet>
+      <title>Quality & HSE | Safety & Compliance Standards in Qatar</title>
+      <meta
+        name="description"
+        content="Our commitment to quality, health, safety, and environmental standards ensuring safe operations, compliance, and continuous improvement in every project."
+      />
+      <link rel="canonical" href="https://multiverseint.com/hse" />
+    </Helmet>
 
       {/* HERO SECTION */}
       <div className="relative w-full h-[250px] md:h-[350px] overflow-hidden flex items-center justify-center">

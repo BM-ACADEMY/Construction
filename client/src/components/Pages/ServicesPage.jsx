@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaHardHat, FaTruckLoading, FaCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 
 // --- COMPONENT: Background Pattern ---
 const BlueprintGrid = () => (
@@ -27,6 +28,15 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-orange-100">
+      <Helmet>
+  <title>Our Services | Civil Construction, MEP & Fit-out Services in Qatar</title>
+  <meta
+    name="description"
+    content="Explore our services including civil construction, MEP works, fit-out, and trading services in Qatar. Delivering cost-effective and high-quality project solutions."
+  />
+  <link rel="canonical" href="https://multiverseint.com/services" />
+</Helmet>
+
 
       {/* ==========================
           SECTION 1: HERO BANNER
