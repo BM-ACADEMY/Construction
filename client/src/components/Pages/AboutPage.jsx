@@ -45,11 +45,9 @@ const AboutPage = () => {
   return (
     <div className="font-sans text-slate-800 bg-white relative selection:bg-orange-100">
       <Helmet>
-  <title>About Us | Multiverse International Trading & Contracting Qatar</title>
-  <meta
-    name="description"
-    content="Learn about Multiverse International Trading & Contracting, a trusted trading and contracting company in Qatar delivering quality, safety, and reliable project solutions."
-  />
+  <title>About Us | Multiverse Trading Qatar</title>
+<meta name="description" content="Learn about Multiverse Trading & Contracting, delivering quality civil, MEP and fit-out services across Qatar with safety and reliability."/>
+
   <link rel="canonical" href="https://multiverseint.com/about" />
 </Helmet>
 

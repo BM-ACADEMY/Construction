@@ -117,11 +117,9 @@ const ProjectsPage = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-orange-100 relative">
       <Helmet>
-  <title>Our Projects | Multiverse International Trading & Contracting Qatar</title>
-  <meta
-    name="description"
-    content="View our completed projects including villas, commercial buildings, MEP works, and fit-out solutions delivered across Qatar with quality and expertise."
-  />
+  <title>Our Projects | Multiverse Qatar</title>
+<meta name="description" content="View our completed villas, commercial buildings, MEP and fit-out projects delivered across Qatar with quality and expertise."/>
+
   <link rel="canonical" href="https://multiverseint.com/projects" />
 </Helmet>
 

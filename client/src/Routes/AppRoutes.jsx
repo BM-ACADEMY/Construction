@@ -23,14 +23,9 @@ const AppRoutes = () => {
         element={
           <>
             <Helmet>
-              <title>
-                Multiverse International Trading & Contracting | Trading & Contracting Company in Qatar
-              </title>
-              <meta
-                name="description"
-                content="Multiverse International Trading & Contracting provides reliable civil construction, MEP works, fit-out, and trading services in Qatar with quality and safety standards."
-              />
-              <link rel="canonical" href="https://multiverseint.com/" />
+              <title>Multiverse Trading & Contracting Qatar</title>
+              <meta name="description" content="Trusted trading and contracting company in Qatar offering civil construction, MEP, fit-out and reliable project solutions."/>
+                <link rel="canonical" href="https://multiverseint.com/" />
             </Helmet>
 
             <Hero />

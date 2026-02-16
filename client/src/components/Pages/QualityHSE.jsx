@@ -74,11 +74,9 @@ const QualityPage = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-orange-100 relative">
       <Helmet>
-      <title>Quality & HSE | Safety & Compliance Standards in Qatar</title>
-      <meta
-        name="description"
-        content="Our commitment to quality, health, safety, and environmental standards ensuring safe operations, compliance, and continuous improvement in every project."
-      />
+      <title>Contact Multiverse Trading Qatar</title>
+<meta name="description" content="Contact Multiverse Trading & Contracting in Qatar for civil, MEP and fit-out services. Get expert project consultation today."/>
+
       <link rel="canonical" href="https://multiverseint.com/hse" />
     </Helmet>
 

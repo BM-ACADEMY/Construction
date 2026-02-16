@@ -29,11 +29,9 @@ const ServicesPage = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-orange-100">
       <Helmet>
-  <title>Our Services | Civil Construction, MEP & Fit-out Services in Qatar</title>
-  <meta
-    name="description"
-    content="Explore our services including civil construction, MEP works, fit-out, and trading services in Qatar. Delivering cost-effective and high-quality project solutions."
-  />
+  <title>Civil, MEP & Fit-Out Services in Qatar</title>
+<meta name="description" content="Explore our civil construction, MEP works, fit-out and trading services in Qatar. Cost-effective, high-quality project solutions."/>
+
   <link rel="canonical" href="https://multiverseint.com/services" />
 </Helmet>
 
