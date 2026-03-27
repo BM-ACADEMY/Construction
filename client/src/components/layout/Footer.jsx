@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 // Import Logo
-import logo from '../../assets/constructionlogo.png';
+import logo from '../../../public/constructionlogo.png';
 
 const Footer = () => {
   return (
@@ -17,7 +17,7 @@ const Footer = () => {
           {/* Column 1: Brand */}
           <div className="flex flex-col items-start">
             <Link to="/" className="block mb-6">
-               <img src={logo} alt="Multiverse Intl" className="h-10 md:h-12 w-auto object-contain brightness-0 invert" />
+               <img src={logo} alt="Multiverse Intl" className="h-10 md:h-12 w-auto object-contain" />
             </Link>
 
             <p className="text-sm leading-relaxed text-slate-400 mb-6">
